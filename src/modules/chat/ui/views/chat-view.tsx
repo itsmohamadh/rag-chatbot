@@ -23,7 +23,7 @@ import { DefaultChatTransport } from "ai";
 import { MessageSquareIcon } from "lucide-react";
 import { useState } from "react";
 
-export default function ChatPage() {
+export default function ChatView() {
   const [input, setInput] = useState("");
 
   const { messages, sendMessage, status } = useChat({

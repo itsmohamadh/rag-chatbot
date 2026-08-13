@@ -1,21 +1,59 @@
 import {
   convertToModelMessages,
   createUIMessageStreamResponse,
+  InferUITools,
+  stepCountIs,
   streamText,
+  tool,
   toUIMessageStream,
+  UIDataTypes,
   UIMessage,
 } from "ai";
 import { openai } from "@ai-sdk/openai";
+import z from "zod";
+import { searchDocuments } from "@/modules/chat/actions/search";
+
+const tools = {
+  searchKnowledgeBase: tool({
+    description: "Search the knowledge base for relevant information",
+    inputSchema: z.object({
+      query: z.string().describe("The search query to find relevant documents"),
+    }),
+    execute: async ({ query }) => {
+      try {
+        const results = await searchDocuments(query, 3, 0.5);
+
+        if (results.length == 0) {
+          return " No relevant information found in the knowledge base";
+        }
+
+        const formattedResults = results
+          .map((r, i) => `[${i + 1}] ${r.content}`)
+          .join("\n\n");
+
+        return formattedResults;
+      } catch (error) {
+        console.error("Search Error:", error);
+        return "Error searching the knowledge base";
+      }
+    },
+  }),
+};
+
+export type ChatTools = InferUITools<typeof tools>;
+export type ChatMessage = UIMessage<never, UIDataTypes, ChatTools>;
 
 export async function POST(req: Request) {
-  const { messages }: { messages: UIMessage[] } = await req.json();
+  const { messages }: { messages: ChatMessage[] } = await req.json();
 
   try {
     const result = streamText({
-      model: openai("gpt-3.5-turbo"),
+      model: openai("gpt-4o-mini"),
       instructions:
-        'When providing instructions, avoid suggesting assistance or asking if I can help in any way. Just state the specific information or task you want me to address. For example, instead of saying "How can I assist you?" or "What do you want me to do?", simply give clear directives or ask direct questions without prompting any further engagement.',
+        "you're a helpful assistant with access to a knowledge base. When users ask questions, search the knowledge base for relevant information. Always search before answering if the question might relate to uploaded documents. Base your answers on the search results when available. Give concise answers that correctly answer what the user is asking for. Do not flood them with all the information from the search results.",
       messages: await convertToModelMessages(messages),
+      tools,
+      stopWhen: stepCountIs(2),
     });
 
     result.usage.then((usage) =>
