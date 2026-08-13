@@ -5,7 +5,7 @@ import { requireAuth } from "@/modules/auth/lib/helpers";
 import { SignOutButton } from "@/components/layout/signout-button";
 
 export default async function SetupPage() {
-  const { profile, response } = await requireAuth();
+  const { user, response } = await requireAuth();
 
   if (response) {
     redirect(`/login`);

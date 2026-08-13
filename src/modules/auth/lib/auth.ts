@@ -36,6 +36,13 @@ export const auth = betterAuth({
     updateAge: 60 * 60 * 24, // 1 day
   },
   user: {
+    additionalFields: {
+      role: {
+        type: 'string',
+        defaultValue: "user",
+      },
+    },
+
     changeEmail: {
       enabled: true,
     },
@@ -47,7 +54,6 @@ export const auth = betterAuth({
     window: 60, // 1 minute
     max: 100, // max 100 requests per minute
   },
-
 });
 
 export type Session = typeof auth.$Infer.Session;

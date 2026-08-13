@@ -4,28 +4,28 @@ AI-powered knowledge assistant that lets users interact with a private knowledge
 
 ## Tech Stack
 
-* **Next.js**
-* **React**
-* **TypeScript**
-* **Vercel AI SDK**
-* **OpenAI**
-* **AI Elements**
-* **Tailwind CSS**
-* **PostgreSQL / NeonDB**
-* **Drizzle ORM**
+- **Next.js**
+- **React**
+- **TypeScript**
+- **Vercel AI SDK**
+- **OpenAI**
+- **AI Elements**
+- **Tailwind CSS**
+- **PostgreSQL / NeonDB**
+- **Drizzle ORM**
 
 ## Key Features
 
-* Streaming AI responses in real time
-* Conversational chat interface
-* Document ingestion and processing
-* Embedding-based semantic search
-* RAG-powered responses grounded in the knowledge base
-* Structured AI outputs
-* Tool calling and multi-step AI workflows
-* Loading, error, and generation states
-* Ability to stop an active generation
-* Responsive chat interface
+- Streaming AI responses in real time
+- Conversational chat interface
+- Document ingestion and processing
+- Embedding-based semantic search
+- RAG-powered responses grounded in the knowledge base
+- Structured AI outputs
+- Tool calling and multi-step AI workflows
+- Loading, error, and generation states
+- Ability to stop an active generation
+- Responsive chat interface
 
 ## Architecture
 
@@ -58,6 +58,6 @@ graph TD
 
 ## Project Goals
 
-* Build a production-style AI application with modern AI SDK patterns.
-* Combine LLMs, streaming, embeddings, RAG, and tool calling in one application.
-* Keep the architecture modular so additional AI capabilities can be added without redesigning the application.
+- Build a production-style AI application with modern AI SDK patterns.
+- Combine LLMs, streaming, embeddings, RAG, and tool calling in one application.
+- Keep the architecture modular so additional AI capabilities can be added without redesigning the application.

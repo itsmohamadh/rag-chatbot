@@ -1,9 +1,11 @@
+import { userRoleEnum } from "@/db/schema";
 import { auth } from "@/modules/auth/lib/auth";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
+type UserRole = (typeof userRoleEnum.enumValues)[number];
 
-export async function requireAuth() {
+export async function requireAuth(roles?: UserRole[]) {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -11,10 +13,22 @@ export async function requireAuth() {
   if (!session?.user) {
     return {
       user: null,
-      response: NextResponse.json({ error: "Unauthorised" }, { status: 401 }),
+      response: NextResponse.json(
+        { error: "Unauthenticated" },
+        { status: 401 },
+      ),
     };
   }
 
-  return { profile: session.user, response: null };
-}
+  if (roles && !roles.includes(session.user.role as UserRole)) {
+    return {
+      user: null,
+      response: NextResponse.json({ error: "Unauthorized" }, { status: 403 }),
+    };
+  }
 
+  return {
+    user: session.user,
+    response: null,
+  };
+}
