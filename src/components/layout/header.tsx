@@ -10,7 +10,7 @@ export function Header() {
           href="/"
           className="font-semibold tracking-tight transition-opacity hover:opacity-80"
         >
-          Company Assistant
+          Company Employee Assistant
         </Link>
 
         <div className="flex items-center gap-2">
