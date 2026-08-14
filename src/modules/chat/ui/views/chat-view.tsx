@@ -44,7 +44,7 @@ export default function ChatView() {
       <div className="flex flex-col h-full">
         <Conversation>
           <ConversationContent>
-            {messages.length == 0 ? (
+            {messages.length === 0 ? (
               <ConversationEmptyState
                 description="Messages will appear here as the conversation progresses."
                 icon={<MessageSquareIcon className="size-6" />}

@@ -1,4 +1,4 @@
-'use server'
+"use server";
 
 import "pdf-parse/worker";
 import { PDFParse, VerbosityLevel } from "pdf-parse";
@@ -29,7 +29,7 @@ export async function processPDFFile(formData: FormData) {
 
     const data = await parser.getText();
 
-    if (!data.text || data.text.length == 0) {
+    if (!data.text || data.text.length === 0) {
       return { error: "No text found in PDF", success: false };
     }
 
