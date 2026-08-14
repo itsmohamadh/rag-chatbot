@@ -2,7 +2,7 @@
 
 import "pdf-parse/worker";
 import { PDFParse, VerbosityLevel } from "pdf-parse";
-import { chunkContent } from "../lib/chincking";
+import { chunkContent } from "../lib/chunking";
 import { generateEmbeddings } from "../lib/embedding";
 import db from "@/db";
 import { documents } from "@/db/schema";

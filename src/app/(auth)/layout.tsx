@@ -70,9 +70,7 @@ export default async function layout({
 
         {children}
       </div>
-      <div className="fixed bottom-5 right-5">
-        <ThemeToggle />
-      </div>
+      
     </div>
   );
 }

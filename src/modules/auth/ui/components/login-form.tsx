@@ -96,7 +96,8 @@ const LoginForm = () => {
 
   return (
     <div className="relative isolate flex flex-col items-center">
-      <Logo size={"md"} />
+      <Logo size={"md"}
+       />
       <p className="mt-4 mb-6 font-medium text-xl">Welcome Back!</p>
 
       <RHFormContainer

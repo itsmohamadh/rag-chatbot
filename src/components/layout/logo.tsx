@@ -1,12 +1,12 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
-const logoVariants = cva("flex items-center  ", {
+const logoVariants = cva("flex items-center justify-center  ", {
   variants: {
     variant: {
       textOnly: "justify-start",
-      horizontal: "flex-row gap-2",
-      vertical: "flex-col gap-2 text-center",
+      horizontal: "flex-row ",
+      vertical: "flex-col  text-center",
     },
     size: {
       xs: "text-md",
@@ -62,7 +62,7 @@ const logoVariants = cva("flex items-center  ", {
   },
 });
 
-const avatarImageVariants = cva("", {
+const avatarImageVariants = cva("mx-auto", {
   variants: {
     size: {
       xs: "size-8",
@@ -97,8 +97,8 @@ export default function Logo({
       {shouldShowAvatar && (
         <figure className={cn(avatarImageVariants({ size }))}>
           <svg
-            width={'100%'}
-            height={'100%'}
+            width={"100%"}
+            height={"100%"}
             viewBox="0 0 250 250"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"

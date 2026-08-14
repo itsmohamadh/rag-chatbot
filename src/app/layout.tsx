@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import OuterProviders from "@/components/provider/outer-provider";
+import { Footer } from "@/components/layout/footer";
+import { Header } from "@/components/layout/header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,7 +17,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Night Shift AI Chatbot",
-  description: "Let's Chat with a Custom AI Chatbot",
+  description: "Let's Chat with our company's policy document",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -27,7 +28,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col ">
-        <OuterProviders>{children}</OuterProviders>
+        <OuterProviders>
+          <>
+            <Header />
+            {children}
+
+            <Footer />
+          </>
+        </OuterProviders>
       </body>
     </html>
   );

@@ -40,7 +40,7 @@ export default function ChatView() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 relative size-full  h-screen">
+    <div className="max-w-4xl mx-auto p-6 relative size-full  h-[calc(100vh-64px-72px)]">
       <div className="flex flex-col h-full">
         <Conversation>
           <ConversationContent>
@@ -81,7 +81,7 @@ export default function ChatView() {
         >
           <PromptInputTextarea
             value={input}
-            placeholder="Say something..."
+            placeholder="Ask about company policies..."
             onChange={(e) => setInput(e.currentTarget.value)}
             className="pr-12"
           />
